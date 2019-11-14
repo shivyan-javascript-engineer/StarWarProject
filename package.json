@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./api/api.js",
     "nodemon": "nodemon --exec npm run dev",
-    "start": "npm install && npm run dev",
+    "start": "node ./api/api.js",
     "lint": "eslint ./api/. ./config/. ./test/.",
     "prepush": "npm test",
     "pretest": "npm run lint",
