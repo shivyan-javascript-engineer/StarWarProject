@@ -10,7 +10,7 @@ const PlanetController = () => {
       const loadedHttpService = httpService(API_URL);
       const planets = (await loadedHttpService.get('planets/')).results;
 
-      const searchedResults = searchValue(planets, name, 'name');
+      const searchedResults = searchValue(planets, name, ['name', 'diameter']);
 
       return res.status(200).json({
         status: true,

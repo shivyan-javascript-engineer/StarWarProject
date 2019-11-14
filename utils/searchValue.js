@@ -4,6 +4,6 @@ const searchValue = (arr, val, resultBy) =>
     ? []
     : arr
         .filter(obj => obj.name.toLowerCase().search(val.toLowerCase()) !== -1)
-        .map(obj => obj[resultBy]);
+        .map(obj => resultBy.reduce((acc, key) => ({ ...acc, [key]: obj[key] }), {}));
 
 module.exports = searchValue;
