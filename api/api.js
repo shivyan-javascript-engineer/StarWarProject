@@ -15,7 +15,7 @@ const config = require('../config/');
 const auth = require('./policies/auth.policy');
 
 // environment: development, staging, testing, production
-const environment = process.env.NODE_ENV;
+const environment = process.env.NODE_ENV || 'production';
 
 /**
  * express application
