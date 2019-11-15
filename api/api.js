@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const http = require('http');
 const mapRoutes = require('express-routes-mapper');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 /**
  * server configuration
@@ -21,6 +22,17 @@ const environment = process.env.NODE_ENV || 'production';
  * express application
  */
 const app = express();
+
+// Set up mongoose connection
+let dev_db_url =
+  'mongodb+srv://shivyan:kronos@cluster0-58ay3.mongodb.net/test?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// setting server and routes
 const server = http.Server(app);
 const mappedOpenRoutes = mapRoutes(config.publicRoutes, 'api/controllers/');
 const mappedAuthRoutes = mapRoutes(config.privateRoutes, 'api/controllers/');
